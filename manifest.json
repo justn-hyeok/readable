@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+    "name": "Readable",
+    "version": "1.0.0",
+    "description": "Improving Web Accessibility with Local AI",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "src/presentation/background/index.ts",
+        "type": "module"
+    },
+    "action": {
+        "default_popup": "src/presentation/popup/index.html",
+        "default_title": "Readable"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "src/presentation/content-scripts/injector.ts"
+            ],
+            "matches": [
+                "<all_urls>"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "assets/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}
